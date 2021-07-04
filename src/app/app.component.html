@@ -1,48 +1,48 @@
-<form class="container" >
+<form id="form" class="container" >
     <div class="form-group">
-        <div>
-            <span>Reactive form test</span>
-            <span class="float-end"><input type="radio" name="test_case" value="yes" (click)="toDisplay()" ><label class="px-2">Yes</label>
-                <input type="radio" name="test_case" value="no" (click)="notToDisplay()"><label class="px-2">No</label></span>
+        <div class="row row-cols-2">
+            <div class="col-8">Have you ever used hand - held vibrating tools, machines or hand - fed processes in your job?
+                If <strong>No</strong>, there is no need to answer any further questions.</div>
+            <div class="col-4 float-end">
+                <input class="radioBtn" type="radio" name="test_case" value="yes" (click)="toDisplay()" ><label class="px-2">Yes</label>
+                <input class="radioBtn" type="radio" name="test_case" value="no" (click)="notToDisplay()"><label class="px-2">No</label>
+            </div>
         </div>
 
         <div *ngIf="flag == 1">
-            <div>
-                <hr>
-                <span>Test Data Date</span>
-                <span class="float-end"><input type="date"></span>
+            <div class="row row-cols-2 my-3 py-3 top-border" >
+                <span class="col-7">If <strong>Yes</strong>, What was the first year of exposure?</span>
+                <span class="col-5 float-end"><input class="input-width" type="date"></span>
                 
             </div>
             
-            <div>
-                <hr>
-                <span>Test Data Date</span>
-                <span class="float-end"><input type="date"></span>
+            <div class="row row-cols-2 my-3 py-3 top-border" >
+                <span class="col-7">When was the last time you used them?</span>
+                <span class="col-5 float-end"><input class="input-width" type="date"></span>
             </div>
         </div>
 
-        <div>
-            <hr>
+        <div class="my-3 py-3 top-border">
             <div><p>Work History (Company Name, Job Title, Corresponding Dates)</p></div>
-            <div class="d-flex p-2">
-                <div class="pe-2" >
+            <div class="d-flex my-3 py-3 top-border row" >
+                <div class="pe-2 col" >
                     <div >
-                        <input type="text"  placeholder="Company 1 ">
+                        <input class="input-width" type="text"  placeholder="Company 1 ">
                     </div>
-                    <div class="py-2">
-                        <input type="date" name="" id="">
+                    <div class="pt-2">
+                        <input class="input-width" type="date">
                     </div>
                 </div>
-                <div>
+                <div class="col mb-2">
                     <div>
-                        <input type="text" placeholder="Job 1">
+                        <input class="input-width" type="text" placeholder="Job 1">
                     </div>
-                    <div class="py-2">
-                        <input type="date" name="" id="">
+                    <div class="pt-2">
+                        <input class="input-width" type="date" name="" id="">
                     </div>
                 </div>
             </div>
-            <div><button class="btn" style="border: 1px solid;">Add Work History</button></div>
+            <div class="top-border pt-3"><button class="btn btn-outline-light" style="border: 1px solid;">Add Work History</button></div>
         </div>
     </div>
 </form>
