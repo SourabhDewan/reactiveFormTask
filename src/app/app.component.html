@@ -1,4 +1,4 @@
-<form id="form" class="container form-control">
+<form id="form" class="container form-control" [formGroup]="form">
   <div class="form-group">
     <div class="row row-cols-2">
       <div class="col-8">
@@ -30,37 +30,37 @@
           >If <strong>Yes</strong>, What was the first year of exposure?</span
         >
         <span class="col-5 float-end"
-          ><input class="input-width" type="date"
+          ><input class="input-width" type="date" formControlName="firstYearExposure"
         /></span>
       </div>
 
       <div class="row row-cols-2 my-3 py-3 top-border">
         <span class="col-7">When was the last time you used them?</span>
         <span class="col-5 float-end"
-          ><input class="input-width" type="date"
+          ><input class="input-width" type="date" formControlName="lastYearUsed"
         /></span>
       </div>
     </div>
 
-    <div class="my-3 py-3 top-border">
+    <div class="my-3 py-3 top-border" formArrayName="moreWork">
       <div>
         <p>Work History (Company Name, Job Title, Corresponding Dates)</p>
       </div>
       <div class="d-flex my-3 py-3 top-border row">
         <div class="pe-2 col">
           <div>
-            <input class="input-width" type="text" placeholder="Company 1 " />
+            <input class="input-width" type="text" placeholder="Company 1" formControlName="company" />
           </div>
           <div class="pt-2">
-            <input class="input-width" type="date" />
+            <input class="input-width" type="date" formControlName="startingDate" />
           </div>
         </div>
         <div class="col mb-2">
           <div>
-            <input class="input-width" type="text" placeholder="Job 1" />
+            <input class="input-width" type="text" placeholder="Job 1" formControlName="job"/>
           </div>
           <div class="pt-2">
-            <input class="input-width" type="date" name="" id="" />
+            <input class="input-width" type="date" placeholder="Todate" formControlName="tilDate" />
           </div>
         </div>
       </div>
@@ -68,21 +68,21 @@
       <!-- dynamic field after clicking button -->
       <div 
         *ngFor="let work of moreWork.controls"
-        class="d-flex my-3 py-3 top-border row">
+        class="d-flex my-3 py-3 top-border row" >
         <div class="pe-2 col">
           <div>
-            <input class="input-width" type="text" placeholder="Company" />
+            <input class="input-width" type="text" placeholder="Company"  />
           </div>
           <div class="pt-2">
-            <input class="input-width" type="date" />
+            <input class="input-width" type="date" placeholder="From Date" formControlName="startingDate"/>
           </div>
         </div>
         <div class="col mb-2">
           <div>
-            <input class="input-width" type="text" placeholder="Job" />
+            <input class="input-width" type="text" placeholder="Job" formControlName="job" />
           </div>
           <div class="pt-2">
-            <input class="input-width" type="date" name="" id="" />
+            <input class="input-width" type="date" formControlName="tilDate" />
           </div>
         </div>
         <div class="pt-3">
@@ -106,6 +106,7 @@
           Add Work History
         </button>
       </div>
+      <div><button type="submit" class="btn btn-primary my-2" (click)="submit()">Submit</button></div>
     </div>
   </div>
 </form>

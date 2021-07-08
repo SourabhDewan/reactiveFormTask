@@ -11,7 +11,16 @@ export class AppComponent {
   title = 'form-task';
   flag = 0;
   form = new FormGroup({
-    moreWork: new FormArray([])
+    firstYearExposure: new FormControl('', Validators.required),
+    lastYearUsed: new FormControl('', Validators.required),
+    moreWork: new FormArray([
+      new FormGroup({
+        company: new FormControl('', Validators.required),
+        job: new FormControl('', Validators.required),
+        startingDate: new FormControl('', Validators.required),
+        tilDate: new FormControl('', Validators.required)
+      })
+    ])
   })
   
   get moreWork(){
@@ -19,12 +28,13 @@ export class AppComponent {
   }
 
   addMoreWork(){
-    this.moreWork.push(new FormControl());
+     
+    this.moreWork.push(this.moreWork);
+    
   }
 
-  removeMoreWork(work: FormControl){
-    let index = this.moreWork.controls.indexOf(work)
-    this.moreWork.removeAt(index);
+  removeMoreWork(work: number){
+    this.moreWork.removeAt(work);
   }
   toDisplay(){
     this.flag = 1;
@@ -33,4 +43,9 @@ export class AppComponent {
   notToDisplay(){
     this.flag = 0;
   }
+
+  submit(){
+    console.log(this.form.value);
+  }
 }
+
