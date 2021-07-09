@@ -46,7 +46,7 @@
       <div>
         <p>Work History (Company Name, Job Title, Corresponding Dates)</p>
       </div>
-      <div class="d-flex my-3 py-3 top-border row">
+      <!-- <div class="d-flex my-3 py-3 top-border row" >
         <div class="pe-2 col">
           <div>
             <input class="input-width" type="text" placeholder="Company 1" formControlName="company" />
@@ -63,37 +63,40 @@
             <input class="input-width" type="date" placeholder="Todate" formControlName="tilDate" />
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- dynamic field after clicking button -->
       <div 
-        *ngFor="let work of moreWork.controls"
-        class="d-flex my-3 py-3 top-border row" >
-        <div class="pe-2 col">
-          <div>
-            <input class="input-width" type="text" placeholder="Company"  />
+        *ngFor="let work of moreWork.controls; let i = index"
+        class="d-flex my-3 py-3 top-border row" 
+        >
+        <div [formGroupName]='i'>
+          <div class="pe-2 col">
+            <div >
+              <input class="input-width" type="text" placeholder="Company"  formControlName="company"/>
+            </div>
+            <div class="pt-2">
+              <input class="input-width" type="date" placeholder="From Date" formControlName="startingDate"/>
+            </div>
           </div>
-          <div class="pt-2">
-            <input class="input-width" type="date" placeholder="From Date" formControlName="startingDate"/>
+          <div class="col mb-2">
+            <div>
+              <input class="input-width" type="text" placeholder="Job" formControlName="job" />
+            </div>
+            <div class="pt-2">
+              <input class="input-width" type="date" formControlName="tilDate" />
+            </div>
           </div>
-        </div>
-        <div class="col mb-2">
-          <div>
-            <input class="input-width" type="text" placeholder="Job" formControlName="job" />
+          <div class="pt-3">
+            <button
+              class="btn btn-outline-light"
+              type="button"
+              style="border: 1px solid; color: red"
+              (click)="removeMoreWork()"
+            >
+              Remove
+            </button>
           </div>
-          <div class="pt-2">
-            <input class="input-width" type="date" formControlName="tilDate" />
-          </div>
-        </div>
-        <div class="pt-3">
-          <button
-            class="btn btn-outline-light"
-            type="button"
-            style="border: 1px solid; color: red"
-            (click)="removeMoreWork()"
-          >
-            Remove
-          </button>
         </div>
       </div>
       <div class="top-border pt-3">
@@ -106,7 +109,7 @@
           Add Work History
         </button>
       </div>
-      <div><button type="submit" class="btn btn-primary my-2" (click)="submit()">Submit</button></div>
+      <div><button type="submit" class="btn btn-success my-2" (click)="submit()" style="color: aliceblue;">Submit</button></div>
     </div>
   </div>
 </form>

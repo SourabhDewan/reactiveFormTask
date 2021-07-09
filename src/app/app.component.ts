@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormArray,  FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormArray,  FormBuilder,  FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -7,30 +7,39 @@ import { FormArray,  FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./app.component.css']
   
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'form-task';
   flag = 0;
-  form = new FormGroup({
-    firstYearExposure: new FormControl('', Validators.required),
-    lastYearUsed: new FormControl('', Validators.required),
-    moreWork: new FormArray([
-      new FormGroup({
-        company: new FormControl('', Validators.required),
-        job: new FormControl('', Validators.required),
-        startingDate: new FormControl('', Validators.required),
-        tilDate: new FormControl('', Validators.required)
-      })
+  companyDetails;
+  form;
+  constructor(private fb : FormBuilder){
+
+  }
+  ngOnInit(){
+    this.companyDetails = this.fb.group({
+      company: ['', Validators.required],
+      job: ['', Validators.required],
+      startingDate: ['', Validators.required],
+      tilDate: ['', Validators.required]
+  })
+   
+  this.form = this.fb.group({
+    firstYearExposure: ['', Validators.required],
+    lastYearUsed: ['', Validators.required],
+    moreWork: this.fb.array([
+      this.companyDetails
     ])
   })
+  console.log(this.moreWork.controls);
+  }
+  
   
   get moreWork(){
     return this.form.get('moreWork') as FormArray;
   }
 
   addMoreWork(){
-     
-    this.moreWork.push(this.moreWork);
-    
+    this.moreWork.push(this.companyDetails);
   }
 
   removeMoreWork(work: number){
