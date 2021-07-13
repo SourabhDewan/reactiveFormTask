@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray,  FormBuilder,  FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit {
   flag = 0;
   companyDetails;
   form;
-  constructor(private fb : FormBuilder){
+  constructor(private fb : FormBuilder, private http : HttpClient){
 
   }
   ngOnInit(){
@@ -54,6 +55,11 @@ export class AppComponent implements OnInit {
   }
 
   submit(){
+    this.http.get('https://api-tracker.sw-gr.com/pack/api/applicant/53?$expand=OccupationalHistories&$expand')
+    .subscribe(response => {
+      this.form.value = response;
+      console.log(response);
+    })
     console.log(this.form.value);
   }
 }
